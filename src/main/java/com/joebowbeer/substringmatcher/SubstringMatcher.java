@@ -22,24 +22,22 @@ public class SubstringMatcher {
             }
         }
         int longest = 0;
-        int previousIndex = -1;
         int substringLength = 0;
+        Integer previousIndex = null;
         for (char c : a.toCharArray()) {
             Integer index = pos.get(c);
-            if (index != null) {
-                if (previousIndex == -1 || index == previousIndex + 1) {
-                    // extend substring
-                    previousIndex = index;
-                    substringLength++;
-                    continue;
-                }
-            }
-            // finish substring and update longest
-            if (substringLength > longest) {
+            if (index != null && previousIndex != null && index == previousIndex + 1) {
+              // extend substring
+              substringLength++;
+            } else {
+              // update longest and maybe start a new substring
+              if (substringLength > longest) {
                 longest = substringLength;
+              }
+              substringLength = (index == null) ? 0 : 1;
             }
-            previousIndex = -1;
-            substringLength = 0;
+            // advance previous index
+            previousIndex = index;
         }
         return longest;
     }

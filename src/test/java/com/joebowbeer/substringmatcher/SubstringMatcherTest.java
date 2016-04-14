@@ -31,11 +31,18 @@ public class SubstringMatcherTest {
     @Test
     public void testFindLongest() {
         assertEquals(0, SubstringMatcher.findLongest(
+                "abc", ""));
+        assertEquals(0, SubstringMatcher.findLongest(
                 "abc", "def"));
+        assertEquals(1, SubstringMatcher.findLongest(
+                "aaa", "abc"));
         assertEquals(2, SubstringMatcher.findLongest(
                 "abracadabra", "crab"));
         assertEquals(9, SubstringMatcher.findLongest(
                 "abcdefggghijklmnnnopqrstuvvvwxyz",
+                "abcdefghijklmnopqrstuvwxyz"));
+        assertEquals(7, SubstringMatcher.findLongest(
+                "abcdefhijklmopqrstuwxyz",
                 "abcdefghijklmnopqrstuvwxyz"));
     }
 
